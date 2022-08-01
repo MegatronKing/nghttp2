@@ -519,58 +519,60 @@ add_subdirectory(bpf)
 
 
 string(TOUPPER "${CMAKE_BUILD_TYPE}" _build_type)
-message(STATUS "summary of build options:
+if (ENABLE_MESSAGE)
+  message(STATUS "summary of build options:
 
-    Package version: ${VERSION}
-    Library version: ${LT_CURRENT}:${LT_REVISION}:${LT_AGE}
-    Install prefix:  ${CMAKE_INSTALL_PREFIX}
-    Target system:   ${CMAKE_SYSTEM_NAME}
-    Compiler:
-      Build type:     ${CMAKE_BUILD_TYPE}
-      C compiler:     ${CMAKE_C_COMPILER}
-      CFLAGS:         ${CMAKE_C_FLAGS_${_build_type}} ${CMAKE_C_FLAGS}
-      C++ compiler:   ${CMAKE_CXX_COMPILER}
-      CXXFLAGS:       ${CMAKE_CXX_FLAGS_${_build_type}} ${CMAKE_CXX_FLAGS}
-      WARNCFLAGS:     ${WARNCFLAGS}
-      CXX1XCXXFLAGS:  ${CXX1XCXXFLAGS}
-    Python:
-      Python:         ${PYTHON_EXECUTABLE}
-      PYTHON_VERSION: ${PYTHON_VERSION_STRING}
-      Library version:${PYTHONLIBS_VERSION_STRING}
-      Cython:         ${CYTHON_EXECUTABLE}
-    Test:
-      CUnit:          ${HAVE_CUNIT} (LIBS='${CUNIT_LIBRARIES}')
-      Failmalloc:     ${ENABLE_FAILMALLOC}
-    Libs:
-      OpenSSL:        ${HAVE_OPENSSL} (LIBS='${OPENSSL_LIBRARIES}')
-      Libxml2:        ${HAVE_LIBXML2} (LIBS='${LIBXML2_LIBRARIES}')
-      Libev:          ${HAVE_LIBEV} (LIBS='${LIBEV_LIBRARIES}')
-      Libc-ares:      ${HAVE_LIBCARES} (LIBS='${LIBCARES_LIBRARIES}')
-      Libngtcp2:      ${HAVE_LIBNGTCP2} (LIBS='${LIBNGTCP2_LIBRARIES}')
-      Libngtcp2_crypto_openssl: ${HAVE_LIBNGTCP2_CRYPTO_OPENSSL} (LIBS='${LIBNGTCP2_CRYPTO_OPENSSL_LIBRARIES}')
-      Libnghttp3:     ${HAVE_LIBNGHTTP3} (LIBS='${LIBNGHTTP3_LIBRARIES}')
-      Libbpf:         ${HAVE_LIBBPF} (LIBS='${LIBBPF_LIBRARIES}')
-      Libevent(SSL):  ${HAVE_LIBEVENT_OPENSSL} (LIBS='${LIBEVENT_OPENSSL_LIBRARIES}')
-      Jansson:        ${HAVE_JANSSON} (LIBS='${JANSSON_LIBRARIES}')
-      Jemalloc:       ${HAVE_JEMALLOC} (LIBS='${JEMALLOC_LIBRARIES}')
-      Zlib:           ${HAVE_ZLIB} (LIBS='${ZLIB_LIBRARIES}')
-      Systemd:        ${HAVE_SYSTEMD} (LIBS='${SYSTEMD_LIBRARIES}')
-      Boost::System:  ${Boost_SYSTEM_LIBRARY}
-      Boost::Thread:  ${Boost_THREAD_LIBRARY}
-    Third-party:
-      http-parser:    ${ENABLE_THIRD_PARTY}
-      MRuby:          ${HAVE_MRUBY}
-      Neverbleed:     ${HAVE_NEVERBLEED}
-    Features:
-      Applications:   ${ENABLE_APP}
-      HPACK tools:    ${ENABLE_HPACK_TOOLS}
-      Libnghttp2_asio:${ENABLE_ASIO_LIB}
-      Examples:       ${ENABLE_EXAMPLES}
-      Python bindings:${ENABLE_PYTHON_BINDINGS}
-      Threading:      ${ENABLE_THREADS}
-      HTTP/3(EXPERIMENTAL): ${ENABLE_HTTP3}
-")
-if(ENABLE_LIB_ONLY_DISABLED_OTHERS)
-  message("Only the library will be built. To build other components "
-    "(such as applications and examples), set ENABLE_LIB_ONLY=OFF.")
-endif()
+      Package version: ${VERSION}
+      Library version: ${LT_CURRENT}:${LT_REVISION}:${LT_AGE}
+      Install prefix:  ${CMAKE_INSTALL_PREFIX}
+      Target system:   ${CMAKE_SYSTEM_NAME}
+      Compiler:
+        Build type:     ${CMAKE_BUILD_TYPE}
+        C compiler:     ${CMAKE_C_COMPILER}
+        CFLAGS:         ${CMAKE_C_FLAGS_${_build_type}} ${CMAKE_C_FLAGS}
+        C++ compiler:   ${CMAKE_CXX_COMPILER}
+        CXXFLAGS:       ${CMAKE_CXX_FLAGS_${_build_type}} ${CMAKE_CXX_FLAGS}
+        WARNCFLAGS:     ${WARNCFLAGS}
+        CXX1XCXXFLAGS:  ${CXX1XCXXFLAGS}
+      Python:
+        Python:         ${PYTHON_EXECUTABLE}
+        PYTHON_VERSION: ${PYTHON_VERSION_STRING}
+        Library version:${PYTHONLIBS_VERSION_STRING}
+        Cython:         ${CYTHON_EXECUTABLE}
+      Test:
+        CUnit:          ${HAVE_CUNIT} (LIBS='${CUNIT_LIBRARIES}')
+        Failmalloc:     ${ENABLE_FAILMALLOC}
+      Libs:
+        OpenSSL:        ${HAVE_OPENSSL} (LIBS='${OPENSSL_LIBRARIES}')
+        Libxml2:        ${HAVE_LIBXML2} (LIBS='${LIBXML2_LIBRARIES}')
+        Libev:          ${HAVE_LIBEV} (LIBS='${LIBEV_LIBRARIES}')
+        Libc-ares:      ${HAVE_LIBCARES} (LIBS='${LIBCARES_LIBRARIES}')
+        Libngtcp2:      ${HAVE_LIBNGTCP2} (LIBS='${LIBNGTCP2_LIBRARIES}')
+        Libngtcp2_crypto_openssl: ${HAVE_LIBNGTCP2_CRYPTO_OPENSSL} (LIBS='${LIBNGTCP2_CRYPTO_OPENSSL_LIBRARIES}')
+        Libnghttp3:     ${HAVE_LIBNGHTTP3} (LIBS='${LIBNGHTTP3_LIBRARIES}')
+        Libbpf:         ${HAVE_LIBBPF} (LIBS='${LIBBPF_LIBRARIES}')
+        Libevent(SSL):  ${HAVE_LIBEVENT_OPENSSL} (LIBS='${LIBEVENT_OPENSSL_LIBRARIES}')
+        Jansson:        ${HAVE_JANSSON} (LIBS='${JANSSON_LIBRARIES}')
+        Jemalloc:       ${HAVE_JEMALLOC} (LIBS='${JEMALLOC_LIBRARIES}')
+        Zlib:           ${HAVE_ZLIB} (LIBS='${ZLIB_LIBRARIES}')
+        Systemd:        ${HAVE_SYSTEMD} (LIBS='${SYSTEMD_LIBRARIES}')
+        Boost::System:  ${Boost_SYSTEM_LIBRARY}
+        Boost::Thread:  ${Boost_THREAD_LIBRARY}
+      Third-party:
+        http-parser:    ${ENABLE_THIRD_PARTY}
+        MRuby:          ${HAVE_MRUBY}
+        Neverbleed:     ${HAVE_NEVERBLEED}
+      Features:
+        Applications:   ${ENABLE_APP}
+        HPACK tools:    ${ENABLE_HPACK_TOOLS}
+        Libnghttp2_asio:${ENABLE_ASIO_LIB}
+        Examples:       ${ENABLE_EXAMPLES}
+        Python bindings:${ENABLE_PYTHON_BINDINGS}
+        Threading:      ${ENABLE_THREADS}
+        HTTP/3(EXPERIMENTAL): ${ENABLE_HTTP3}
+  ")
+  if(ENABLE_LIB_ONLY_DISABLED_OTHERS)
+    message("Only the library will be built. To build other components "
+      "(such as applications and examples), set ENABLE_LIB_ONLY=OFF.")
+  endif()
+endif()  
